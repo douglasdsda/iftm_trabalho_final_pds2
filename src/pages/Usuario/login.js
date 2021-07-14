@@ -30,6 +30,7 @@ function Login() {
     history.push('/dashbord');
    } catch (error) {
      console.log('errr')
+     alert("Senha ou email errado")
    }
   }
 
@@ -46,7 +47,7 @@ function Login() {
         <div className="col-6 d-flex flex-column  justify-content-center align-items-center">
           <h1>Login</h1>
 
-          <Button onClick={handleTeste}>testar</Button>
+          {/* <Button onClick={handleTeste}>testar</Button> */}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>

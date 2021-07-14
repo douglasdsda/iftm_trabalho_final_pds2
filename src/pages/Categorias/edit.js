@@ -1,0 +1,74 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Header from "../../components/Header";
+import { api } from "../../services/api";
+
+function CategoriaEdit() {
+  const [categorias, setCategorias] = useState([]);
+  useEffect(() => {
+    const loads = async () => {
+      try {
+        const response = await api.get("categories");
+
+        console.log(response.data);
+        setCategorias(response.data);
+      } catch (error) {}
+    };
+
+    loads();
+  }, []);
+
+  async function handleDelete(id){
+    try {
+      await api.delete(`categories/${id}`)
+    } catch (error) {
+      
+    }
+  }
+
+  return (
+    <div>
+      <Header />
+      <div className="container">
+        <div className="row mt-4 mb-4">
+          <h1>Categorias</h1>
+
+           <Link to="/categorias/novo">
+                        <strong className="btn btn-primary">Novo</strong>
+                      </Link>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Opções</th>
+                </tr>
+              </thead>
+              <tbody>
+                {categorias.map((cat) => (
+                  <tr key={cat.id}>
+                    <th scope="row">{cat.id}</th>
+                    <td>{cat.name}</td>
+                    <td>
+                      <Link to={`/categorias/${cat.id}`}>
+                        <strong className="btn btn-warning">Editar</strong>
+                      </Link>
+                      <Link to="/usuarios">
+                        <strong onclick={() =>handleDelete(cat.id)} className="btn btn-warning">Delete</strong>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default CategoriaEdit;

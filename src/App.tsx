@@ -5,7 +5,7 @@ import GlobalStyle from './styles/global';
 import Routes from './routes';
 
 import AppProvider from './hooks/index';
-
+import './styles/styles.css'
 const App: React.FC = () => (
   <Router>
     <AppProvider>
