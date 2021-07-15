@@ -3,10 +3,9 @@ import React, { createContext, useCallback, useState, useContext } from 'react';
 import {api} from '../services/api';
 
 interface User {
-  id: number;
-  name: string;
+ 
   email: string;
-  phone: string;
+ 
 }
 
 interface AuthState {
@@ -30,13 +29,13 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    // const token = localStorage.getItem('@iftm2021-trabalho-final:token');
-    // const user = localStorage.getItem('@iftm2021-trabalho-final:user');
+    const token = localStorage.getItem('@iftm2021-trabalho-final:token');
+    const user = localStorage.getItem('@iftm2021-trabalho-final:user');
 
-    // if (token && user) {
-    //   api.defaults.headers.authorization = `Bearer ${token}`;
-    //   return { token, user: JSON.parse(user) };
-    // }
+    if (token && user) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+      return { token, user: JSON.parse(user) };
+    }
 
     return {} as AuthState;
   });
@@ -46,7 +45,9 @@ const AuthProvider: React.FC = ({ children }) => {
       email,
       password,
     });
-    const { token, user } = response.data;
+    const dataResponse = response.data;
+    const user = {email: dataResponse.email}
+    const token = dataResponse.token
     localStorage.setItem('@iftm2021-trabalho-final:token', token);
     localStorage.setItem('@iftm2021-trabalho-final:user', JSON.stringify(user));
 

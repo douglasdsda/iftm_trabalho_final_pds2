@@ -1,13 +1,11 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { FiClock, FiPower } from 'react-icons/fi';
+import { FiPower } from 'react-icons/fi';
 import LogoUsuario from '../../assets/LogoUsuario.jpg'
 import logoImg from '../../assets/logo.jpg';
-import { useAuth } from '../../hooks/auth';
-import {api} from '../../services/api';
 
-import { Container, Header as ContainerHeader,
+import { Header as ContainerHeader,
  Profile,
   HeaderContent, } from './styles';
 
@@ -23,22 +21,25 @@ const Header: React.FC = () => {
         
         </div>
       </Profile>
-      <div>
+      <div style={{marginLeft: 'auto'}}>
       <Link to="/categorias">
-            <strong>Categorias</strong>
+            <strong >Categorias</strong>
           </Link>
 
           <Link to="/usuarios">
-            <strong>Usuarios</strong>
+            <strong className="espaco">Usuarios</strong>
           </Link>
 
           <Link to="/produtos">
-            <strong>Produtos</strong>
+            <strong className="espaco mr-4">Produtos</strong>
           </Link>
       </div>
-      <button type="button">
+      <Link to="/">
+      <button  type="button">
         <FiPower />
       </button>
+
+      </Link>
     </HeaderContent>
   </ContainerHeader>
   )

@@ -18,12 +18,10 @@ function Categorias() {
     loads();
   }, []);
 
-  async function handleDelete(id){
+  async function handleDelete(id) {
     try {
-      await api.delete(`categories/${id}`)
-    } catch (error) {
-      
-    }
+      await api.delete(`categories/${id}`);
+    } catch (error) {}
   }
 
   return (
@@ -33,9 +31,9 @@ function Categorias() {
         <div className="row mt-4 mb-4">
           <h1>Categorias</h1>
 
-           <Link to="/categorias/novo">
-                        <strong className="btn btn-primary">Novo</strong>
-                      </Link>
+          <Link to="categorianova">
+            <strong className="btn btn-primary ml-4 mt-2">Novo</strong>
+          </Link>
         </div>
         <div className="row">
           <div className="col-12">
@@ -56,9 +54,13 @@ function Categorias() {
                       <Link to={`/categorias/${cat.id}`}>
                         <strong className="btn btn-warning">Editar</strong>
                       </Link>
-                      <Link to="/usuarios">
-                        <strong onclick={() =>handleDelete(cat.id)} className="btn btn-warning">Delete</strong>
-                      </Link>
+
+                      <strong
+                        onclick={() => handleDelete(cat.id)}
+                        className="btn btn-danger ml-4"
+                      >
+                        Delete
+                      </strong>
                     </td>
                   </tr>
                 ))}
