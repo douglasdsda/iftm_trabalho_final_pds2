@@ -1,42 +1,17 @@
-import { useEffect } from "react";
 import { useState } from "react";
-import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Header from "../../components/Header";
 import { api } from "../../services/api";
- 
-
 
 function CategoriaEdit() {
   const [name, setName] = useState("");
-  const [categoria, setCategoria] = useState({});
- 
   const history = useHistory();
-  const { params } = useRouteMatch();
-
-  console.log('params: ', params)
-
-  useEffect(() => {
-      const loads = async () => {
-         try {
-          const {id} = params;
-          if(id){
-          const response = await api.get(`categories/${id}`)
-           setName(response.data.name)
-          }
-         } catch (error) {
-           alert('Ocorreu algum erro ao tentar carregar')
-         }
-      }
-
-      loads()
-  }, [params])
-
 
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-     
-      await api.post(`categories`, { name, id: Number(params.id) });
+      console.log('teste', name)
+      await api.post(`categories`, { name });
       history.push("/categorias");
     } catch (error) {}
   }

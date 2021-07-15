@@ -8,8 +8,12 @@ import logoImg from '../../assets/logo.jpg';
 import { Header as ContainerHeader,
  Profile,
   HeaderContent, } from './styles';
+import { useAuth } from '../../hooks/auth';
 
 const Header: React.FC = () => {
+
+  const { user } = useAuth()
+
   return (
     <ContainerHeader>
     <HeaderContent>
@@ -17,7 +21,7 @@ const Header: React.FC = () => {
       <Profile>
         <img src={LogoUsuario} alt="teste" />
         <div>
-          <span>Bem-vindo,</span>
+          <span>Bem-vindo, <strong style={{color: 'yellow'}}>{user.email}</strong></span>
         
         </div>
       </Profile>

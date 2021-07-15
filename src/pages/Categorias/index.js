@@ -20,7 +20,12 @@ function Categorias() {
 
   async function handleDelete(id) {
     try {
+
       await api.delete(`categories/${id}`);
+      const list = [...categorias]
+      const itemIndex = list.findIndex(w => w.id == id)
+      list.splice(itemIndex, 1)
+      setCategorias([...list])
     } catch (error) {}
   }
 
