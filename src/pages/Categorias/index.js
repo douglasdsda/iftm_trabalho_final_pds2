@@ -37,7 +37,7 @@ function Categorias() {
         </div>
         <div className="row">
           <div className="col-12">
-            <table class="table">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -56,7 +56,7 @@ function Categorias() {
                       </Link>
 
                       <strong
-                        onclick={() => handleDelete(cat.id)}
+                        onClick={() => handleDelete(cat.id)}
                         className="btn btn-danger ml-4"
                       >
                         Delete
