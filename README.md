@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Grupo 
 
-Douglas Souza
+Douglas Souza e 
 Rodrigo Miranda
 
 ## Available Scripts
