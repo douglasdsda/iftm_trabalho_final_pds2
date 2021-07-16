@@ -20,7 +20,7 @@ function CategoriaEdit() {
          try {
           const {id} = params;
           if(id){
-          const response = await api.get(`users/${id}`)
+          const response = await api.get(`categories/${id}`)
            setName(response.data.name)
           }
          } catch (error) {
@@ -36,8 +36,8 @@ function CategoriaEdit() {
     try {
       e.preventDefault();
      
-      await api.post(`users`, { name, id: Number(params.id) });
-      history.push("/usuarios");
+      await api.post(`categories`, { name, id: Number(params.id) });
+      history.push("/categorias");
     } catch (error) {}
   }
 
