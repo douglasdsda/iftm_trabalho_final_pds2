@@ -3,19 +3,20 @@ import { Link, useHistory } from "react-router-dom";
 import Header from "../../components/Header";
 import { api } from "../../services/api";
 
-function UsuarioNovo() {
+function ProdutoNovo() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const [description, setDescription] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
+  const [price, setPrice] = useState("");
+
   const history = useHistory();
 
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-
-      await api.post(`users`, { phone, password, email, name });
-      history.push("/usuarios");
+      console.log('teste', name)
+      await api.post(`products`,{ description, imgUrl, name, price });
+      history.push("/produtos");
     } catch (error) {}
   }
 
@@ -24,9 +25,9 @@ function UsuarioNovo() {
       <Header />
       <div className="container">
         <div className="row mt-4 mb-4">
-          <h1>Novo Usuario</h1>
+          <h1>Nova Categoria</h1>
 
-          <Link to="/usuarios">
+          <Link to="/produtos">
             <strong className="btn btn-primary ml-4 mt-2">Voltar</strong>
           </Link>
         </div>
@@ -38,50 +39,49 @@ function UsuarioNovo() {
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  type="text"
+                  type="name"
                   className="form-control"
                   id="name"
                   aria-describedby="name"
-                  placeholder="Digite seu Nome..."
+                  placeholder="Digite seu nome..."
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="description">Descrição</label>
                 <input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  type="email"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  type="description"
                   className="form-control"
-                  id="email"
-                  aria-describedby="name"
-                  placeholder="Digite seu e-mail..."
+                  id="description"
+                  aria-describedby="description"
+                  placeholder="Digite a Descrição..."
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email">Telefone</label>
+                <label htmlFor="imgUrl">imgUrl</label>
                 <input
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  type="text"
+                  value={imgUrl}
+                  onChange={(e) => setImgUrl(e.target.value)}
+                  type="imgUrl"
                   className="form-control"
-                  id="phone"
-                  aria-describedby="phone"
-                  placeholder="Digite seu e-mail..."
+                  id="imgUrl"
+                  aria-describedby="imgUrl"
+                  placeholder="Digite a URL..."
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="price">Preço</label>
                 <input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  type="price"
                   className="form-control"
-                  id="password"
-                  aria-describedby="password"
-                  placeholder="Digite sua senha.."
+                  id="price"
+                  aria-describedby="price"
+                  placeholder="Digite o Preço..."
                 />
               </div>
-
               <button type="submit" className="btn btn-primary">
                 Salvar
               </button>
@@ -93,4 +93,4 @@ function UsuarioNovo() {
   );
 }
 
-export default UsuarioNovo;
+export default ProdutoNovo;

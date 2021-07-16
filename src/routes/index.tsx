@@ -9,6 +9,9 @@ import Usuario from "../pages/Usuario";
 import UsuarioEdit from "../pages/Usuario/edit";
 import Login from "../pages/Usuario/login";
 import UsuarioNovo from "../pages/Usuario/novo";
+import Produtos from "../pages/Produtos";
+import ProdutoEdit from "../pages/Produtos/edit";
+import ProdutoNovo from "../pages/Produtos/novo";
 
 import Route from "./Route";
 
@@ -25,6 +28,10 @@ const Routes: React.FC = () => (
     <Route exact  path="/usuarios" isPrivate component={Usuario} />
     <Route    path="/usuarios/:id" isPrivate component={UsuarioEdit} />
     <Route   path="/usuarioNovo" isPrivate component={UsuarioNovo} />
+
+    <Route exact  path="/produtos" component={Produtos} />
+    <Route    path="/produtos/:id" component={ProdutoEdit} />
+    <Route   path="/podutonovo" component={ProdutoNovo} />
   </Switch>
 );
 
