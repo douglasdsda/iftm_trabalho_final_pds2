@@ -24,9 +24,9 @@ function ProdutoEdit() {
           if(id){
           const response = await api.get(`products/${id}`)
            setName(response.data.name)
-           setDescription(response.data.name)
-           setImgUrl(response.data.name)
-           setPrice(response.data.name)
+           setDescription(response.data.description)
+           setImgUrl(response.data.imgUrl)
+           setPrice(response.data.price)
           }
          } catch (error) {
            alert('Ocorreu algum erro ao tentar carregar')
