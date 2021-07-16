@@ -12,7 +12,7 @@ import { useAuth } from '../../hooks/auth';
 
 const Header: React.FC = () => {
 
-  const { user } = useAuth()
+  const { user, signOut } = useAuth()
 
   return (
     <ContainerHeader>
@@ -38,12 +38,11 @@ const Header: React.FC = () => {
             <strong className="espaco mr-4">Produtos</strong>
           </Link>
       </div>
-      <Link to="/">
-      <button  type="button">
+    
+      <button onClick={signOut}  type="button">
         <FiPower />
       </button>
-
-      </Link>
+ 
     </HeaderContent>
   </ContainerHeader>
   )

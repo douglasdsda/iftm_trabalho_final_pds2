@@ -4,14 +4,14 @@ import Header from "../../components/Header";
 import { api } from "../../services/api";
 
 function Usuario() {
-  const [categorias, setCategorias] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   useEffect(() => {
     const loads = async () => {
       try {
-        const response = await api.get("usuarios");
+        const response = await api.get("users");
 
-        console.log(response.data);
-        setCategorias(response.data);
+ 
+        setUsuarios(response.data);
       } catch (error) {}
     };
 
@@ -20,7 +20,11 @@ function Usuario() {
 
   async function handleDelete(id) {
     try {
-      await api.delete(`categories/${id}`);
+      await api.delete(`users/${id}`);
+      const list = [...usuarios]
+      const itemIndex = list.findIndex(w => w.id == id)
+      list.splice(itemIndex, 1)
+      setUsuarios([...list])
     } catch (error) {}
   }
 
@@ -29,9 +33,9 @@ function Usuario() {
       <Header />
       <div className="container">
         <div className="row mt-4 mb-4">
-          <h1>Categorias</h1>
+          <h1>Usuarios</h1>
 
-          <Link to="categorianova">
+          <Link to="usuarioNovo">
             <strong className="btn btn-primary ml-4 mt-2">Novo</strong>
           </Link>
         </div>
@@ -46,12 +50,12 @@ function Usuario() {
                 </tr>
               </thead>
               <tbody>
-                {categorias.map((cat) => (
+                {usuarios.map((cat) => (
                   <tr key={cat.id}>
                     <th scope="row">{cat.id}</th>
                     <td>{cat.name}</td>
                     <td>
-                      <Link to={`/categorias/${cat.id}`}>
+                      <Link to={`/usuarios/${cat.id}`}>
                         <strong className="btn btn-warning">Editar</strong>
                       </Link>
 

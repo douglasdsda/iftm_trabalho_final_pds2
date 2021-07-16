@@ -20,7 +20,7 @@ function CategoriaEdit() {
          try {
           const {id} = params;
           if(id){
-          const response = await api.get(`categories/${id}`)
+          const response = await api.get(`users/${id}`)
            setName(response.data.name)
           }
          } catch (error) {
@@ -36,8 +36,8 @@ function CategoriaEdit() {
     try {
       e.preventDefault();
      
-      await api.post(`categories`, { name, id: Number(params.id) });
-      history.push("/categorias");
+      await api.post(`users`, { name, id: Number(params.id) });
+      history.push("/usuarios");
     } catch (error) {}
   }
 
@@ -48,7 +48,7 @@ function CategoriaEdit() {
         <div className="row mt-4 mb-4">
           <h1>Editar Categoria</h1>
 
-          <Link to="/categorias">
+          <Link to="/usuarios">
             <strong className="btn btn-primary ml-4 mt-2">Voltar</strong>
           </Link>
         </div>
