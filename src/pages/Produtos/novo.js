@@ -3,9 +3,12 @@ import { Link, useHistory } from "react-router-dom";
 import Header from "../../components/Header";
 import { api } from "../../services/api";
 
+import { useEffect } from "react";
 function ProdutoNovo() {
   const [name, setName] = useState("");
+  const [categorias, setCategorias] = useState([]);
   const [description, setDescription] = useState("");
+  const [categoria, setCategoria] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [price, setPrice] = useState("");
 
@@ -14,10 +17,33 @@ function ProdutoNovo() {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-      console.log('teste', name)
-      await api.post(`products`,{ description, imgUrl, name, price });
+      console.log("teste", name);
+      await api.post(`/products`, {
+        description,
+        imgUrl,
+        name,
+        price: parseInt(price),
+        categories: new Array({id: Number(categoria), name: ''})
+      });
       history.push("/produtos");
     } catch (error) {}
+  }
+
+  useEffect(() => {
+    const loads = async () => {
+      try {
+        const response = await api.get("categories");
+    console.log("teste: ", response.data);
+
+          setCategorias(response.data);
+      } catch (error) {}
+    };
+
+    loads();
+  }, []);
+
+  function handleSelectCategoria(e) {
+    console.log("teste: ", e);
   }
 
   return (
@@ -25,7 +51,7 @@ function ProdutoNovo() {
       <Header />
       <div className="container">
         <div className="row mt-4 mb-4">
-          <h1>Nova Categoria</h1>
+          <h1>Novo Produto</h1>
 
           <Link to="/produtos">
             <strong className="btn btn-primary ml-4 mt-2">Voltar</strong>
@@ -34,6 +60,23 @@ function ProdutoNovo() {
         <div className="row">
           <div className="col-12">
             <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="categoria">Categria</label>
+
+                <select
+                  value={categoria}
+                  onChange={(e) => setCategoria(e.target.value)}
+                  aria-label="Categoria"
+                  className="form-control"
+                >
+                  {categorias.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+
+              </div>
               <div className="form-group">
                 <label htmlFor="name">Nome</label>
                 <input
@@ -75,7 +118,7 @@ function ProdutoNovo() {
                 <input
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
-                  type="price"
+                  type="text"
                   className="form-control"
                   id="price"
                   aria-describedby="price"

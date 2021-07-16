@@ -47,14 +47,18 @@ function Produtos() {
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Nome</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Preço</th>
                   <th scope="col">Opções</th>
                 </tr>
               </thead>
               <tbody>
-                {produtos.map((cat) => (
+                {produtos?.content?.map((cat) => (
                   <tr key={cat.id}>
                     <th scope="row">{cat.id}</th>
                     <td>{cat.name}</td>
+                    <td>{cat.description}</td>
+                    <td>{cat.price}</td>
                     <td>
                       <Link to={`/produtos/${cat.id}`}>
                         <strong className="btn btn-warning">Editar</strong>
