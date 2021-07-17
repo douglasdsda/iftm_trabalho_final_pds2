@@ -123,6 +123,7 @@ function ProdutoNovo() {
                   id="price"
                   aria-describedby="price"
                   placeholder="Digite o Preço..."
+                  style={{marginBottom: 10}}
                 />
               </div>
               <button type="submit" className="btn btn-primary">

@@ -23,6 +23,8 @@ function ProdutoEdit() {
           const {id} = params;
           if(id){
           const response = await api.get(`products/${id}`)
+    
+ 
            setName(response.data.name)
            setDescription(response.data.description)
            setImgUrl(response.data.imgUrl)
@@ -108,7 +110,7 @@ function ProdutoEdit() {
                   placeholder="Digite o Preço..."
                 />
               </div>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary mt-4">
                 Salvar
               </button>
             </form>

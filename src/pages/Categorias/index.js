@@ -57,12 +57,13 @@ function Categorias() {
                     <td>{cat.name}</td>
                     <td>
                       <Link to={`/categorias/${cat.id}`}>
-                        <strong className="btn btn-warning">Editar</strong>
+                        <strong   style={{marginRight: 10}} className="btn btn-warning">Editar</strong>
                       </Link>
 
                       <strong
                         onClick={() => handleDelete(cat.id)}
-                        className="btn btn-danger ml-4"
+                        className="btn btn-danger"
+                       
                       >
                         Delete
                       </strong>

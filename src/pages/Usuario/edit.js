@@ -21,10 +21,12 @@ function UsuarioEdit() {
         const { id } = params;
         if (id) {
           const response = await api.get(`users/${id}`);
+         
           setEmail(response.data.email);
           setPhone(response.data.phone);
           setPassword(response.data.password);
           setName(response.data.name);
+ 
         }
       } catch (error) {
         alert("Ocorreu algum erro ao tentar carregar");
@@ -109,7 +111,7 @@ function UsuarioEdit() {
               </div>
               
 
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary mt-4">
                 Salvar
               </button>
             </form>

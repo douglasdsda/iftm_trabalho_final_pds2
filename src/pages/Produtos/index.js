@@ -61,7 +61,7 @@ function Produtos() {
                     <td>{cat.price}</td>
                     <td>
                       <Link to={`/produtos/${cat.id}`}>
-                        <strong className="btn btn-warning">Editar</strong>
+                        <strong  style={{marginRight: 10}}  className="btn btn-warning mr-2">Editar</strong>
                       </Link>
 
                       <strong
